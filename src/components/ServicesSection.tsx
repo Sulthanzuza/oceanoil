@@ -47,9 +47,6 @@ const services = [
   }
 ];
 
-
-
-
 const ServicesSection: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -79,36 +76,36 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 drop-shadow-md">
-  Specialized Services
-</h2>
-
-          <div className="w-24 h-1 bg-blue-500 mx-auto"></div>
+    <section className="py-12 md:py-20 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-3 md:mb-4 drop-shadow-md">
+            Specialized Services
+          </h2>
+          <div className="w-20 md:w-24 h-1 bg-blue-500 mx-auto"></div>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col md:flex-row items-center h-[550px] md:h-[600px]">
-          {/* Left Arrow */}
+        <div className="relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col md:flex-row h-auto md:h-[500px] lg:h-[550px]">
+          {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-500/30 text-white p-3 rounded-full hover:bg-gray-600 transition"
+            className="absolute z-10 top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-gray-500/30 text-white p-2 md:p-3 rounded-full hover:bg-gray-600 transition"
+            aria-label="Previous service"
           >
-            <ChevronLeft size={28} />
+            <ChevronLeft size={24} className="md:w-7 md:h-7" />
           </button>
 
-          {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-500/30 text-white p-3 rounded-full hover:bg-gray-600 transition"
+            className="absolute z-10 top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-gray-500/30 text-white p-2 md:p-3 rounded-full hover:bg-gray-600 transition"
+            aria-label="Next service"
           >
-            <ChevronRight size={28} />
+            <ChevronRight size={24} className="md:w-7 md:h-7" />
           </button>
 
-          {/* Image Side */}
-          <div className="md:w-1/2 w-full h-80 md:h-full overflow-hidden rounded-l-lg">
-            <AnimatePresence>
+          {/* Image Section */}
+          <div className="w-full md:w-1/2 h-64 sm:h-80 md:h-full overflow-hidden">
+            <AnimatePresence mode="wait">
               <motion.img
                 key={current}
                 src={services[current].image}
@@ -122,43 +119,51 @@ const ServicesSection: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Content Side */}
-          <div className="md:w-1/2 w-full p-8 text-left">
+          {/* Content Section */}
+          <div className="w-full md:w-1/2 p-5 sm:p-6 md:p-8 flex flex-col">
             <AnimatePresence mode="wait">
-            <motion.div
-  key={current}
-  initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
-  exit={{ opacity: 0, x: -50 }}
-  transition={{ duration: 0.5 }}
->
-  <div className="flex items-center mb-4">
-  <h2 
-  className="text-4xl font-bold ml-4 text-blue-700 border-b-4 border-blue-900 pb-1 uppercase"
-  style={{ 
-    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.25)' 
-  }}
->
-  {services[current].title}
-</h2>
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col h-full"
+              >
+                <div className="flex items-start mb-3 md:mb-4">
+                  <h2 
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold ml-3 text-blue-700 border-b-2 md:border-b-4 border-blue-900 pb-1 uppercase line-clamp-2"
+                    style={{ 
+                      textShadow: '1px 1px 3px rgba(0, 0, 0, 0.25)',
+                      wordBreak: 'break-word'
+                    }}
+                  >
+                    {services[current].title}
+                  </h2>
+                </div>
+                
+                <div className="flex-grow overflow-y-auto">
+                  <p className="text-gray-600 text-sm sm:text-base md:text-[15px] lg:text-base text-justify mb-3 md:mb-4 leading-snug md:leading-normal">
+                    {services[current].description}
+                  </p>
+                  
+                  <ul className="list-disc pl-5 space-y-1 text-gray-700 text-sm sm:text-base md:text-[15px] lg:text-base">
+                    {services[current].features?.map((feature, index) => (
+                      <li key={index} className="leading-snug">{feature}</li>
+                    ))}
+                  </ul>
+                </div>
 
-  </div>
-  <p className="text-gray-600 text-lg text-justify">{services[current].description}</p>
-  <ul className="list-disc pl-6 mt-4 text-gray-700">
-    {services[current].features?.map((feature, index) => (
-      <li key={index}>{feature}</li>
-    ))}
-  </ul>
-  <button
-  className="mt-6 relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-semibold text-blue-700 border-2 border-blue-700 rounded-lg group"
->
-  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-blue-700 group-hover:w-full group-hover:h-full origin-bottom-left"></span>
-  <span className="relative z-10 group-hover:text-white">Read More</span>
-</button>
-
-
-</motion.div>
-
+                <div className="mt-4 md:mt-6">
+                  <button
+                    className="w-full sm:w-auto relative inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 overflow-hidden font-semibold text-blue-700 border-2 border-blue-700 rounded-lg group hover:bg-blue-700 transition-colors duration-300"
+                  >
+                    <span className="relative z-10 group-hover:text-white text-sm sm:text-base">
+                      Read More
+                    </span>
+                  </button>
+                </div>
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
