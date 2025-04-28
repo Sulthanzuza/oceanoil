@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-screen  overflow-hidden bg-black">
       {/* Fallback background before iframe loads */}
       <div className={`absolute inset-0 z-0 transition-opacity duration-700 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}>
         {/* Solid color fallback OR use a static blurred image */}
@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
               style={{
-                width: '177.77778vh',
+                width: '250.77778vh',
                 height: '100vh',
               }}
               onLoad={() => setVideoLoaded(true)} // Mark as loaded

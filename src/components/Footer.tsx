@@ -85,28 +85,28 @@ const Footer: React.FC = () => {
           <div> 
             <h3 className="text-lg font-semibold mb-6 text-white border-b border-gray-700 pb-2">Contact Us</h3> 
             <ul className="space-y-5"> 
-              <li className="flex items-start group"> 
-                <div className="bg-gray-800 p-2 rounded mr-3 group-hover:bg-blue-900 transition-colors duration-300">
-                  <MapPin size={18} className="text-blue-400" /> 
-                </div>
-                <span className="text-gray-300">123 Ocean Drive, Dubai Maritime City, UAE</span> 
-              </li> 
+              
               <li className="flex items-center group"> 
                 <div className="bg-gray-800 p-2 rounded mr-3 group-hover:bg-blue-900 transition-colors duration-300">
                   <Phone size={18} className="text-blue-400" /> 
                 </div>
-                <span className="text-gray-300">+971 4 123 4567</span> 
+                <span className="text-gray-300">+971 54 306 0098 </span> 
               </li> 
               <li className="flex items-center group"> 
                 <div className="bg-gray-800 p-2 rounded mr-3 group-hover:bg-blue-900 transition-colors duration-300">
                   <Mail size={18} className="text-blue-400" /> 
                 </div>
-                <span className="text-gray-300">info@oceanoildrilling.com</span> 
+                <span className="text-gray-300">hello@aieera.com</span> 
               </li> 
             </ul> 
           </div> 
         </div>
       </div> 
+      <div className="relative text-gray-400 text-center text-sm py-4 z-10">
+      
+   <a href="https://aieera.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Copyright © 2025 Aieera Digital Marketing.All rights reserved</a>.
+</div>
+
     </footer> 
   ); 
 }; 
